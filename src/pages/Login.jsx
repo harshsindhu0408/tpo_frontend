@@ -1,60 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
+import { LoginStudent, isAuthenticated } from "../actions/authActions";
+import TailwindLoader from "../components/common/TailwindLoader";
+import DangerAlert from "../components/common/DangerAlert";
+import { Link, Navigate } from "react-router-dom";
 
 const Login = () => {
+  const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  if (isAuthenticated()) {
+    return <Navigate to="/" />;
+  }
+
+  function handleLogin(e) {
+    e.preventDefault();
+    setLoading(true);
+    LoginStudent(e.target.email.value, e.target.password.value)
+      .catch((err) => {
+        setError(err.response.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
+
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div class="max-w-md relative flex flex-col items-center justify-center p-4 rounded-md text-black bg-white">
-        <div class="text-2xl font-bold mb-2 text-[#1e0e4b] text-center">
-          Welcome back to <span class="text-[#7747ff]">App</span>
+    <div className="flex items-center justify-center h-screen">
+      <div className="max-w-md bg-white p-8 rounded-md shadow-lg">
+        <div className="text-3xl font-bold mb-4 text-[#1e0e4b] text-center">
+          Welcome back to <span className="text-blue-500">NOCGenius</span>
         </div>
-        <div class="text-sm font-normal mb-4 text-center text-[#1e0e4b]">
+        <div className="text-sm text-[#1e0e4b] text-center mb-6">
           Log in to your account
         </div>
-        <form class="flex flex-col gap-3">
-          <div class="block relative">
-            <label
-              for="email"
-              class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2"
-            >
-              Email
+        <form className="flex flex-col gap-4" onSubmit={handleLogin}>
+          <div>
+            <label htmlFor="email" className="block text-sm text-gray-600 mb-2">
+              Registration Number
             </label>
             <input
+              onChange={() => setError("")}
               type="text"
               id="email"
-              class="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2  ring-gray-900 outline-0"
-            />
-          </div>
-          <div class="block relative">
-            <label
-              for="password"
-              class="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2"
-            >
-              Password
-            </label>
-            <input
-              type="text"
-              id="password"
-              class="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2 ring-gray-900 outline-0"
+              required
+              className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
             />
           </div>
           <div>
-            <a class="text-sm text-[#7747ff]" href="#">
-              Forgot your password?
-            </a>
+            <label htmlFor="password" className="block text-sm text-gray-600 mb-2">
+              Password
+            </label>
+            <input
+              onChange={() => setError("")}
+              type="password"
+              id="password"
+              required
+              className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+            />
           </div>
+          <div className="text-sm text-blue-500">
+            <Link to="/forgot-password">Forgot your password?</Link>
+          </div>
+
+          <DangerAlert message={error} />
+
           <button
             type="submit"
-            class="bg-[#7747ff] w-max m-auto px-6 py-2 rounded text-white text-sm font-normal"
+            className="bg-blue-500 w-full py-2 rounded-md text-white font-semibold transition duration-300 hover:bg-blue-600 focus:outline-none"
           >
-            Submit
+            {isLoading ? <TailwindLoader /> : "Login"}
           </button>
         </form>
-        <div class="text-sm text-center mt-[1.6rem]">
-          Don’t have an account yet?{" "}
-          <a class="text-sm text-[#7747ff]" href="#">
-            Sign up for free!
-          </a>
-        </div>
       </div>
     </div>
   );
