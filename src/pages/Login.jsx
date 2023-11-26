@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import { LoginStudent } from "../actions/authActions";
+import { LoginStudent, isAuthenticated } from "../actions/authActions";
 import TailwindLoader from "../components/common/TailwindLoader";
 import DangerAlert from "../components/common/DangerAlert";
+import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  if (isAuthenticated()) {
+    return <Navigate to="/" />;
+  }
 
   function handleLogin(e) {
     e.preventDefault();
