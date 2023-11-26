@@ -2,8 +2,8 @@ import React from "react";
 
 const Login = () => {
   return (
-    <div>
-      <div class="max-w-md relative flex flex-col items-center p-4 rounded-md text-black bg-white">
+    <div className="flex flex-col items-center justify-center">
+      <div class="max-w-md relative flex flex-col items-center justify-center p-4 rounded-md text-black bg-white">
         <div class="text-2xl font-bold mb-2 text-[#1e0e4b] text-center">
           Welcome back to <span class="text-[#7747ff]">App</span>
         </div>
