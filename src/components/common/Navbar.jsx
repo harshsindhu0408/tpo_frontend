@@ -13,16 +13,16 @@ const Navbar = () => {
     navigate("/login");
   };
   return (
-    <nav className="w-full z-10 relative bg-gray-800 h-20 flex items-center justify-center shadow-2xl">
+    <nav className="w-full z-10 relative bg-black h-20 flex items-center justify-center shadow-2xl">
       <div className="w-11/12  flex flex-row items-center justify-between">
         {/* Left side */}
         <Link to={'/'}>
-        <div className="text-lg font-bold font-Roborto text-white">StudentCorner</div>
+        <div className="text-xl font-bold font-Roborto text-white">StudentCorner</div>
         </Link>
 
         {/* Mid div with links */}
         <div className="hidden md:block">
-          <ul className="flex items-center justify-center gap-10">
+          <ul className="flex items-center justify-center gap-20">
             {Links.map((link) => (
               <li key={link.id}>
                 <Link
@@ -40,14 +40,14 @@ const Navbar = () => {
         <div>
           {isLoggedin ? (
             <button
-              className="bg-indigo-500 hover:bg-indigo-600 hover:scale-95 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24"
+              className="bg-blue-500 hover:bg-blue-600 hover:scale-95 block font-bold text-white shadow-sm rounded-sm px-4 py-2 duration-300 w-24"
               onClick={() => navigate("/login")}
             >
               Logout
             </button>
           ) : (
             <button
-              className="bg-indigo-500 hover:bg-indigo-600 hover:scale-95 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24"
+              className="bg-blue-500 hover:bg-blue-600 hover:scale-95 block font-bold text-white shadow-sm rounded-sm px-4 py-2 duration-300 w-24"
               onClick={loginHandler}
             >
               Login
