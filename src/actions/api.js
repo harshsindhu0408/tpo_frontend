@@ -1,4 +1,4 @@
-const BASE_URL = "https://bq7xt4nx-8080.inc1.devtunnels.ms/api/v1";
+const BASE_URL = "http://localhost:8080/api/v1";
 
 export const StudentEndpoints = {
   LOGIN_API: BASE_URL + "/student/login",

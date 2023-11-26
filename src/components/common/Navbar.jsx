@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../../actions/authActions";
 
 const Navbar = () => {
   const Links = [
@@ -8,9 +9,10 @@ const Navbar = () => {
     {id: 3, name: "Download NOC", link: "/download-noc" },
     {id: 4, name: "About Us", link: "/about" },
   ];
+  console.log(isAuthenticated());
   const navigate = useNavigate();
-  const [isLoggedin, setIsLoggedin] = useState(false);
-  const loginHandler = () => {
+  const logoutHandler = () => {
+    sessionStorage.clear();
     navigate("/login");
   };
   return (
@@ -18,7 +20,7 @@ const Navbar = () => {
       <div className="w-11/12 flex flex-row items-center justify-between">
         {/* Left side */}
         <Link to={'/'}>
-        <div className="text-xl font-bold font-Roborto text-white">StudentCorner</div>
+        <div className="text-xl font-bold font-Roborto text-white">NOCGenius</div>
         </Link>
 
         {/* Mid div with links */}
@@ -28,7 +30,7 @@ const Navbar = () => {
               <li key={link.id}>
                 <Link
                   to={link.link}
-                  className="text-white font-bold font-Roborto hover:text-indigo-500 duration-200"
+                  className="text-white font-bold font-Roborto hover:text-blue-500 duration-200"
                 >
                   {link.name}
                 </Link>
@@ -39,17 +41,17 @@ const Navbar = () => {
 
         {/* Login and logout button */}
         <div>
-          {isLoggedin ? (
+          {isAuthenticated() ? (
             <button
               className="bg-blue-500 hover:bg-blue-600 hover:scale-95 block font-bold text-white shadow-sm rounded-sm px-4 py-2 duration-300 w-24"
-              onClick={() => navigate("/login")}
+              onClick={logoutHandler}
             >
               Logout
             </button>
           ) : (
             <button
               className="bg-blue-500 hover:bg-blue-600 hover:scale-95 block font-bold text-white shadow-sm rounded-sm px-4 py-2 duration-300 w-24"
-              onClick={loginHandler}
+              onClick={() => (navigate('/login'))}
             >
               Login
             </button>
