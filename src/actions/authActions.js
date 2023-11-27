@@ -15,11 +15,6 @@ export async function LoginStudent(registerationNumber, password) {
     });
 }
 
-export function Logout() {
-  sessionStorage.clear();
-  window.location.reload();
-}
-
 export function isAuthenticated() {
   if (sessionStorage.getItem("_token")) {
     return true;
