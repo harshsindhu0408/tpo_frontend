@@ -30,7 +30,7 @@ const apiConnector = async (url, method = "get", data = null) => {
 
     // Create a custom error object to propagate the error information
     const customError = new Error("API call failed");
-    customError.response = error.response ? error.response.data : null;
+    customError.response = error.response ? error.response.data : "Internal server error!";
     throw customError; // Throw the custom error to indicate API call failure
   }
 };

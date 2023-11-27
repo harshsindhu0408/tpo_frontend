@@ -17,7 +17,7 @@ const Login = () => {
     setLoading(true);
     LoginStudent(e.target.email.value, e.target.password.value)
       .catch((err) => {
-        setError(err.response.message);
+        setError(err.response.message || err.response);
       })
       .finally(() => {
         setLoading(false);
@@ -47,7 +47,10 @@ const Login = () => {
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm text-gray-600 mb-2">
+            <label
+              htmlFor="password"
+              className="block text-sm text-gray-600 mb-2"
+            >
               Password
             </label>
             <input
@@ -66,7 +69,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="bg-blue-500 w-full py-2 rounded-md text-white font-semibold transition duration-300 hover:bg-blue-600 focus:outline-none"
+            className="flex justify-center text-center bg-blue-500 w-full py-2 rounded-md text-white font-semibold transition duration-300 hover:bg-blue-600 focus:outline-none"
           >
             {isLoading ? <TailwindLoader /> : "Login"}
           </button>
