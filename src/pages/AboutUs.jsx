@@ -18,7 +18,7 @@ const AboutUs = () => {
   ];
 
   return (
-    <div className="w-full flex flex-col items-center justify-center">
+    <div className="flex min-h-screen flex-col items-center justify-center w-full ">
       <div className="w-11/12 mb-20 flex flex-col items-center justify-center">
         {/* heading div */}
         <div className="text-center w-11/12 font-serif h-auto text-6xl font-extrabold overflow-hidden">

@@ -10,7 +10,7 @@ import AboutUs from "./pages/AboutUs";
 
 function App() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center">
+    <div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

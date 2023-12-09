@@ -16,7 +16,7 @@ const Navbar = () => {
     navigate("/login");
   };
   return (
-    <nav className="w-full z-10 relative bg-black h-20 flex items-center justify-center shadow-2xl">
+    <nav className="w-full z-10 relative dark:bg-gray-800 h-20 flex items-center justify-center shadow-2xl">
       <div className="w-11/12 flex flex-row items-center justify-between">
         {/* Left side */}
         <Link to={"/"}>
