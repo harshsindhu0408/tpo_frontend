@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8080/api/v1";
+const BASE_URL = "http://localhost:5000/api/v1";
 
 export const StudentEndpoints = {
   LOGIN_API: BASE_URL + "/student/login",
